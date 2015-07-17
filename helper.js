@@ -2,10 +2,6 @@ function trace(msg) {
     console.log(msg);
 }
 
-function onDeviceReady() {
-    trace('device is ready now');
-    $('.page .content').append('<h1>Device is ready now</h1>');
-}
 
 
 /**
