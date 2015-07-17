@@ -4,7 +4,7 @@ function trace(msg) {
 
 function onDeviceReady() {
     trace('device is ready now');
-    $('body').append('<h1>Device is ready now</h1>');
+    $('.page .content').append('<h1>Device is ready now</h1>');
 }
 
 
