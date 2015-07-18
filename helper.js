@@ -19,11 +19,19 @@ function setFooter(msg) {
 /**
  * ajax api call for portal
  *
- * @param qs - query string with GET METHOD data.
- * @param callback_function
+ * @param url - URL with query string like GET METHOD data.
+ * @param callback_function - a callback function
+ *
+ * @Attention it even calls the callback function after failing ajax loading.
+ *
+ *      - the parameter for callback function is 'promise.failed' if the ajax call failed.
  *
  * @code
- *
+            ajax_api(url_server + '/smsgate/loadData', function(re){
+                trace('LoadSMSData : loading Data...');
+                trace(re);
+                EmitSMSData(re);
+            });
  * @endcode
  * @Attention This method saved the returned-data from server into Web Storage IF qs.cache is set to true.
  *
@@ -49,7 +57,8 @@ function ajax_api( url, callback_function )
 
     promise.fail( function( re ) {
         // alert('ajax call - promise failed');
-        console.log("promise failed...");
-        console.log(re);
+        //console.log("promise failed...");
+        //console.log(re);
+        callback_function( 'promise.failed' )
     });
 }
