@@ -2,6 +2,18 @@ function trace(msg) {
     console.log(msg);
 }
 
+function setHeader(msg) {
+    var m = '<a href="#" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</a>';
+    m += '<h1>' + msg + '</h1>';
+    m += '<button class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check">Save</button>'
+    $('.page .header').html(m).toolbar('refresh');
+}
+
+function setFooter(msg) {
+    var m = '';
+    m += '<h1>' + msg + '</h1>';
+    $('.page .footer').html(m).toolbar('refresh');
+}
 
 
 /**
