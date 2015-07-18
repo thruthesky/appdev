@@ -15,6 +15,10 @@ function setFooter(msg) {
     $('.page .footer').html(m).toolbar('refresh');
 }
 
+function setPage(markup) {
+    $('.page .content').html(markup);
+}
+
 
 /**
  * ajax api call for portal
@@ -62,3 +66,33 @@ function ajax_api( url, callback_function )
         callback_function( 'promise.failed' )
     });
 }
+
+/**    C O R D O V A ( P H O N E G A P ) Functions **/
+
+function getDeviceID() {
+    if ( deviceReady ) {
+        var model = getDeviceModel();
+        var version = getDeviceVersion()
+        var uuid = getDeviceUUID();
+        var id = model + '-' + version;
+        if ( uuid ) {
+            id += '-' + uuid;
+        }
+        return id;
+    }
+    else return 'ERROR-device-is-not-ready';
+}
+function getDeviceModel() {
+    return device.model;
+}
+function getDevicePlatform() {
+    return device.platform;
+}
+function getDeviceUUID() {
+    return device.uuid;
+}
+function getDeviceVersion() {
+    return device.version;
+}
+
+
