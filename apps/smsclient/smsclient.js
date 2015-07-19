@@ -124,22 +124,20 @@ function emit_sms_data(re) {
         phoneNumber: re.number,
         textMessage: re.message
     };
-
-    re.result = 'Y';
-    record_sms_send_result(re);
-
-    /*
-     sms.sendMessage(messageInfo, function(message) {
-     trace.log("success: " + message);
-     re.result = 'Y';
-     recordSMSResult(re);
-     }, function(error) {
-     trace.log("error on sending sms: ...");
-     trace.log(error);
-     re.result = 'N';
-     recordSMSResult(re);
-     });
-     */
+    setDisplayStatus("Emitting Now:");
+    sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
+    function success_callback_sendMessage(message) {
+        setDisplayStatus("Emitting success: " + message);
+        re.result = 'Y';
+        record_sms_send_result(re);
+    }
+    function failure_callback_sendMessage(error) {
+        trace.log("error on sending sms: ...");
+        trace.log(error);
+        console.log("code: " + error.code + ", message: " + error.message);
+        re.result = 'N';
+        record_sms_send_result(re);
+    }
 }
 
 function record_sms_send_result(re) {
