@@ -60,10 +60,11 @@ function ajax_api( url, callback_function )
     promise.done( function( re ) {
         //console.log("promise.done() : callback function : " + callback_function);
         try {
-            var data = JSON.parse(re);
-            callback_function( data )
+            //var data = JSON.parse(re);
+            callback_function( re )
         }
         catch (e) {
+            trace("Try catch exception:");
             console.log(re);
         }
     });

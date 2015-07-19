@@ -139,6 +139,8 @@ function emit_sms_data(re) {
         phoneNumber: re.number,
         textMessage: re.message
     };
+
+
     setDisplayStatus("Emitting Now:");
     sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
     function success_callback_sendMessage(message) {
