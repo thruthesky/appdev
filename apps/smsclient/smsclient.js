@@ -1,4 +1,4 @@
-var url_server = 'http://sonub.org';
+var url_server = 'http://dev.withcenter.com';
 var count_run = 0;
 var count_no_data = 0;
 var count_success = 0;
@@ -7,16 +7,32 @@ var count_error_loading = 0;
 var count_error_recording = 0;
 
 function callback_deviceReady() {
-    begin_sms_sending_loop();
-    setDisplayDeviceID();
+
+    if ( deviceID ) {
+        setDisplayDeviceID();
+        begin_sms_sending_loop();
+    }
+    else {
+        setDisplayStatus("<b style='color:red;'>No Device ID : Check if device plugin is set.</b>")
+    }
 }
+function on_top_left_button_click() {
+    var date = new Date().getTime();
+    document.location.href = 'index.html?stamp=' + date;
+}
+
 $(function(){
     setHeader('SMS Sender');
+    setTopButtonLeft('Reload');
     setFooter('SMSGate Client');
+
     // begin_sms_sending_loop(); // BUG : It must be ran after device is ready.
 
+    var date = new Date().toString();
     var markup = "<div class='info'>";
+    markup += "<div class='row url-server'>Server URL: <span>"+url_server+"</span></div>";
     markup += "<div class='row device-id'>Device ID: <span>"+deviceID+"</span></div>";
+    markup += "<div class='row start'>Started: <span>"+date+"</span></div>";
     markup += "<div class='row run'>Run: <span></span></div>";
     markup += "<div class='row no-data'>No data: <span></span></div>";
     markup += "<div class='row success'>Success: <span></span></div>";
@@ -26,8 +42,6 @@ $(function(){
     markup += "<div class='row status'>Status: <span></span></div>";
     markup += "</div>";
     setPage(markup);
-
-
 
     setDisplayNoData(count_no_data);
     setDisplaySuccess(count_success);
@@ -88,7 +102,8 @@ function callback_sms_send_finished() {
 function load_sms_data_from_server() {
     var url = url_server + '/smsgate/loadData?sender=' + deviceID;
     trace('load_sms_data_from_server()');
-    setDisplayStatus("Loading an SMS data from Server");
+    setDisplayStatus("Loading an SMS data from Server:");
+    setDisplayStatus(url);
     ajax_api(url, function(re){
         trace('load_sms_data_from_server()');
         if ( re == 'promise.failed' ) {

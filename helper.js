@@ -3,10 +3,14 @@ function trace(msg) {
 }
 
 function setHeader(msg) {
-    var m = '<a href="#" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</a>';
+    var m = '<a href="#" class="top-button-left ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</a>';
     m += '<h1>' + msg + '</h1>';
-    m += '<button class="ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check">Save</button>'
+    m += '<button class="top-button-right ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check">Save</button>'
     $('.page .header').html(m).toolbar('refresh');
+}
+
+function setTopButtonLeft(txt) {
+    $('.page .header .top-button-left').html(txt);
 }
 
 function setFooter(msg) {
@@ -19,6 +23,11 @@ function setPage(markup) {
     $('.page .content').html(markup);
 }
 
+$(function(){
+    $('body').on('click', '.page .header .top-button-left', function() {
+        if ( typeof on_top_left_button_click == 'function' ) on_top_left_button_click();
+    });
+});
 
 /**
  * ajax api call for portal
@@ -71,14 +80,19 @@ function ajax_api( url, callback_function )
 
 function getDeviceID() {
     if ( deviceReady ) {
-        var model = getDeviceModel();
-        var version = getDeviceVersion()
-        var uuid = getDeviceUUID();
-        var id = model + '-' + version;
-        if ( uuid ) {
-            id += '-' + uuid;
+        if ( typeof device != 'undefined' ) {
+            var model = getDeviceModel();
+            var version = getDeviceVersion()
+            var uuid = getDeviceUUID();
+            var id = model + '-' + version;
+            if ( uuid ) {
+                id += '-' + uuid;
+            }
+            return id;
         }
-        return id;
+        else {
+            return false;
+        }
     }
     else return 'ERROR-device-is-not-ready';
 }
