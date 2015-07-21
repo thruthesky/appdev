@@ -1,4 +1,4 @@
-var url_server = 'http://sonub.org';
+var url_server = 'http://dev.withcenter.com';
 var count_run = 0;
 var count_no_data = 0;
 var count_success = 0;
