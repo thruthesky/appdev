@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="331fcda9-447b-4f8c-ae5f-787f1ae926d3" name="Default" comment="Updating appdev for smsclient">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/smsclient/smsclient.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helper.js" afterPath="$PROJECT_DIR$/helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/init.js" afterPath="$PROJECT_DIR$/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/smsclient/smsclient.js" afterPath="$PROJECT_DIR$/apps/smsclient/smsclient.js" />
+    <list default="true" id="331fcda9-447b-4f8c-ae5f-787f1ae926d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="appdev.iws" />
@@ -67,8 +63,8 @@
           <file leaf-file-name="smsclient.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/smsclient/smsclient.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6399108">
-                  <caret line="245" column="34" selection-start-line="245" selection-start-column="34" selection-end-line="245" selection-end-column="34" />
+                <state vertical-scroll-proportion="0.47045708">
+                  <caret line="237" column="57" selection-start-line="237" selection-start-column="57" selection-end-line="237" selection-end-column="57" />
                   <folding>
                     <marker date="1437454950587" expanded="true" signature="558:568" placeholder="..." />
                   </folding>
@@ -80,7 +76,7 @@
             <entry file="file://$PROJECT_DIR$/apps/smsclient/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-19.678572">
-                  <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+                  <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -242,7 +238,13 @@
       <option name="project" value="LOCAL" />
       <updated>1437323320791</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updating appdev for smsclient">
+      <created>1437472782772</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1437472782772</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -576,7 +578,7 @@
     <entry file="file://$PROJECT_DIR$/apps/smsclient/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.678572">
-          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -607,8 +609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/smsclient/smsclient.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6399108">
-          <caret line="245" column="34" selection-start-line="245" selection-start-column="34" selection-end-line="245" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.47045708">
+          <caret line="237" column="57" selection-start-line="237" selection-start-column="57" selection-end-line="237" selection-end-column="57" />
           <folding>
             <marker date="1437454950587" expanded="true" signature="558:568" placeholder="..." />
           </folding>
