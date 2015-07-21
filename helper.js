@@ -1,3 +1,12 @@
+var dev = {
+    refresh: function() {
+        this.reload();
+    },
+    reload: function() {
+        var stamp = new Date().getTime();
+        document.location.href="?stamp=" + stamp;
+    }
+};
 function trace(msg) {
     console.log(msg);
 }
@@ -5,7 +14,7 @@ function trace(msg) {
 function setHeader(msg) {
     var m = '<a href="#" class="top-button-left ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</a>';
     m += '<h1>' + msg + '</h1>';
-    m += '<button class="top-button-right ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check">Save</button>'
+    m += '<button class="top-button-right ui-btn-right ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-check">Save</button>';
     $('.page .header').html(m).toolbar('refresh');
 }
 
