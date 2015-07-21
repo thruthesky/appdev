@@ -1,0 +1,16 @@
+.page > .content {
+    font-size:9pt;
+}
+.content .row {
+    padding:.2em .4em;
+    box-sizing: border-box;
+}
+.content .row b {
+    display:inline-block;
+    padding-right:1em;
+    box-sizing: border-box;
+    min-width:6em;
+}
+.content .row span {
+    font-weight: normal;
+}
