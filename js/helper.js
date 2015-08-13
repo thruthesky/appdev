@@ -69,8 +69,9 @@ function ajax_api( url, callback_function )
     promise.done( function( re ) {
         //console.log("promise.done() : callback function : " + callback_function);
         try {
-            //var data = JSON.parse(re);
-            callback_function( re )
+            //trace(re);
+            var data = JSON.parse(re);
+            callback_function( data )
         }
         catch (e) {
             trace("Try catch exception:");
@@ -87,7 +88,6 @@ function ajax_api( url, callback_function )
 }
 
 /**    C O R D O V A ( P H O N E G A P ) Functions **/
-
 function getDeviceID() {
     if ( deviceReady ) {
         if ( typeof device != 'undefined' ) {
@@ -107,6 +107,7 @@ function getDeviceID() {
     else return 'ERROR-device-is-not-ready';
 }
 function getDeviceModel() {
+    if ( typeof device == 'undefined' ) return alert('device plugin is missing...');
     return device.model;
 }
 function getDevicePlatform() {
