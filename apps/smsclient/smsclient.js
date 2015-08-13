@@ -7,6 +7,7 @@ var count_fail = 0;
 var count_error_loading = 0;
 var count_error_recording = 0;
 var interval = 30;
+var second = 1000;
 var count_next_send = 0;
 
 
@@ -127,17 +128,17 @@ function send_new_sms() {
     clearDisplayStatus();
     var rand_second = Math.floor((Math.random() * interval) + 1) + 30;
     // for test, make it short.
-    var seconds = rand_second * 1000; // it should be 1,100
+    var seconds = rand_second * second; // it should be 1,100
     setDisplayStatus("Sending new SMS after sleeping for " + (seconds/1000) + " seconds");
     setDisplayRun(++count_run);
-    count_next_send = rand_second; // parseInt(seconds/1000);
+    count_next_send = parseInt(seconds/1000);
     setTimeout(load_sms_data_from_server, seconds );
 }
 
 
 function callback_sms_send_finished() {
-    setDisplayStatus("Sending SMS finished.");
-    setTimeout(send_new_sms, 1000);
+    setDisplayStatus("Sending SMS finished. Pause 3 seconds.");
+    setTimeout(send_new_sms, 3000);
 }
 
 /**
@@ -166,7 +167,12 @@ function load_sms_data_from_server() {
         }
         else {
             trace(re);
-            emit_sms_data(re);
+            if ( typeof re.error != 'undefined' && re.error < 0 ) {
+                setDisplayStatus("Error from server: " + re.message);
+                //alert(re.message);
+                return callback_sms_send_finished();
+            }
+            else emit_sms_data(re);
         }
     });
 }
@@ -204,10 +210,12 @@ function emit_sms_data(re) {
     };
 
     setDisplayStatus("Emitting Now:");
-    if ( deviceModel == 'ChromeTEST' ) {
-        re.result = 'N';
+    if ( deviceModel == 'Chrome' ) {
+        re.result = 'Y';
         setDisplayStatus("It's Chrome. So just pass with result: " + re.result);
-        setTimeout(record_sms_send_result(re), 1000);
+        setTimeout(function(){
+            record_sms_send_result(re);
+        }, 1000);
     }
     else {
         sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
