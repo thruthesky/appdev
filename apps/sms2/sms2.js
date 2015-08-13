@@ -21,7 +21,7 @@ var count_error_loading = 0;
 var count_error_recording = 0;
 var second = 1000;
 var count_next_send = 0;
-
+var pause_after_send = 10;
 $(function(){
     init_app();
     count_how_many_seconds_left_for_next_sms_sending();
@@ -368,7 +368,12 @@ function record_sms_send_result(re) {
     ajax_api(url, function(re){
         trace('Recording sms result : ...');
         if ( re == 'promise.failed' ) {
-            setDisplayStatus("Recording sms send result to server has been failed.");
+            setDisplayStatus("Connecting to SMSGate Server has been failed.");
+            setDisplayErrorAjaxRecording(++count_error_recording);
+            return callback_sms_send_finished();
+        }
+        if ( re.error ) {
+            setDisplayStatus(re.message);
             setDisplayErrorAjaxRecording(++count_error_recording);
             callback_sms_send_finished();
         }
@@ -376,11 +381,13 @@ function record_sms_send_result(re) {
             setDisplayStatus("sms send result - recorded.");
             callback_sms_send_finished();
         }
+
+
     });
 }
 function get_url_report_result(re) {
     var url = url_report_result;
-    url += '?id=' + re.id;
+    url += '?idx=' + re.idx;
     url += '&result=' + re.result;
     url += '&sender=' + deviceID;
     return url;
@@ -395,6 +402,6 @@ function count_result(re) {
 
 
 function callback_sms_send_finished() {
-    setDisplayStatus("Sending SMS finished. Pause 3 seconds.");
-    setTimeout(send_new_sms, 3000);
+    setDisplayStatus("Sending SMS finished. Pause "+(pause_after_send*1000)+" seconds.");
+    setTimeout(send_new_sms, pause_after_send * 1000);
 }
