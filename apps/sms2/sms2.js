@@ -1,4 +1,4 @@
-var url_server = 'http://sapcms2.org'; // SMSGate Server which has Message Database.
+var url_server = 'http://sap.withcenter.com'; // SMSGate Server which has Message Database.
 var url_load_sms = url_server + '/smsgate/sender/load';
 var url_report_result = url_server + '/smsgate/sender/result';
 /**
