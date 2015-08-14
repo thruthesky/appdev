@@ -63,21 +63,6 @@ function count_how_many_seconds_left_for_next_sms_sending() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function init_display() {
     if ( deviceID ) {
         setDisplayDeviceID();
@@ -91,27 +76,6 @@ function begin_sms_sending_loop()
 {
     send_new_sms();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -204,16 +168,6 @@ function setDisplayTotalRecord(no) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 function rand_interval() {
     return Math.floor((Math.random() * interval) + 1) + minimum_wait;
 }
@@ -256,7 +210,7 @@ function send_new_sms() {
 function load_sms_data_from_server() {
     var url = url_load_sms + '?sender=' + deviceID;
     setDisplayStatus("Loading SMS data from Server:");
-    setDisplayStatus(url);
+    //setDisplayStatus(url);
     ajax_api(url, function(re){
         if ( re == 'promise.failed' ) {
             setDisplayStatus("Fail : Loading sms data from server has been failed.");
@@ -264,7 +218,7 @@ function load_sms_data_from_server() {
             return callback_sms_send_finished();
         }
         else if ( re.error == -409 ) {
-            setDisplayStatus(re.message)
+            setDisplayStatus('<b style="color:red;">'+re.message+'</b>');
             setDisplayNoData(++count_no_data);
             return callback_sms_send_finished();
         }
@@ -309,7 +263,7 @@ function emit_sms_data(re) {
     };
 
     if ( isTestDevice() ) {
-        re.result = 'N';
+        re.result = 'Y';
         setDisplayStatus("It's a test device. faking SMS sent with result: " + re.result);
         setTimeout(function(){
             record_sms_send_result(re);
